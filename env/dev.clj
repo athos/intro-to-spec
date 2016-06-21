@@ -1,13 +1,19 @@
 (ns dev
   (:require [clojure.repl :refer :all]
-            [clojure.pprint :as [pp pprint]]
+            [clojure.pprint :refer [pp pprint]]
             [clojure.tools.namespace.repl :refer [refresh]]
-            [mount.core :as m]))
+            [mount.core :as m]
+            [intro-to-spec.core :as sp]
+            [clojure.spec :as s]
+            [clojure.spec.gen :as gen]
+            [clojure.spec.test :as t]))
 
 (defn go []
+  (s/instrument-all)
   (m/start))
 
 (defn stop []
+  (reset! @#'s/instrumented-vars {})
   (m/stop))
 
 (defn reset []
