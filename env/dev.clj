@@ -3,7 +3,7 @@
             [clojure.pprint :refer [pp pprint]]
             [clojure.tools.namespace.repl :refer [refresh]]
             [mount.core :as m]
-            [intro-to-spec.core :as sp]
+            [intro-to-spec.queue :as q]
             [clojure.spec :as s]
             [clojure.spec.gen :as gen]
             [clojure.spec.test :as t]))

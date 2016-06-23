@@ -1,4 +1,4 @@
-(ns intro-to-spec.core
+(ns intro-to-spec.queue
   (:refer-clojure :exclude [empty empty? remove])
   (:require [clojure.core :as c]
             [clojure.spec :as s]))

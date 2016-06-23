@@ -1,6 +1,6 @@
-(ns intro-to-spec.core-test
+(ns intro-to-spec.queue-test
   (:require [clojure.test :refer :all]
-            [intro-to-spec.core :refer :all]))
+            [intro-to-spec.queue :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
