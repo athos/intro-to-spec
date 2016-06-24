@@ -11,7 +11,7 @@
          ::invariant))
 
 (s/def ::empty-queue
-  (s/tuple nil? nil?))
+  (s/tuple c/empty? c/empty?))
 
 (s/def ::non-empty-queue
   (s/and ::queue #(not (s/valid? ::empty-queue %))))
