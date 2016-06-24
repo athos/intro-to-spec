@@ -3,8 +3,12 @@
   (:require [clojure.core :as c]
             [clojure.spec :as s]))
 
+(s/def ::invariant
+  (fn [[f b]] (or (not (c/empty? f)) (c/empty? b))))
+
 (s/def ::queue
-  (s/tuple (s/nilable seq?) (s/nilable seq?)))
+  (s/and (s/tuple (s/nilable seq?) (s/nilable seq?))
+         ::invariant))
 
 (s/def ::empty-queue
   (s/tuple nil? nil?))
@@ -17,12 +21,17 @@
   :ret ::queue)
 (defn empty [] [nil nil])
 
+(defn- flip [[f b :as q]]
+  (if (c/empty? f)
+    [(reverse b) nil]
+    q))
+
 (s/fdef add
   :args (s/cat :q ::queue
                :x ::s/any)
   :ret ::queue)
 (defn add [[f b] x]
-  [f (cons x b)])
+  (flip [f (cons x b)]))
 
 (s/fdef empty?
   :args (s/cat :q ::queue)
@@ -40,7 +49,4 @@
   :args (s/cat :q ::non-empty-queue)
   :ret ::queue)
 (defn remove [[f b]]
-  (if-let [f' (rest f)]
-    [f' b]
-    [(reverse b) nil]))
-
+  (flip [(rest f) b]))
