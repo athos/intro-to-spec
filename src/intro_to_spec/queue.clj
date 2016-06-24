@@ -18,7 +18,7 @@
 
 (s/fdef empty
   :args (s/cat)
-  :ret ::queue)
+  :ret ::empty-queue)
 (defn empty [] [nil nil])
 
 (defn- flip [[f b :as q]]
@@ -29,7 +29,7 @@
 (s/fdef add
   :args (s/cat :q ::queue
                :x ::s/any)
-  :ret ::queue)
+  :ret ::non-empty-queue)
 (defn add [[f b] x]
   (flip [f (cons x b)]))
 
