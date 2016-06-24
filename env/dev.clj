@@ -13,9 +13,9 @@
   (m/start))
 
 (defn stop []
-  (reset! @#'s/instrumented-vars {})
   (m/stop))
 
 (defn reset []
   (stop)
+  (reset! @#'s/instrumented-vars {})
   (refresh :after 'dev/go))
