@@ -11,7 +11,7 @@
             [clojure.spec.test :as t]))
 
 (defn go []
-  (s/instrument-all)
+  #_(s/instrument-all)
   (mount/start))
 
 (defn stop []
