@@ -20,5 +20,5 @@
 
 (defn reset []
   (stop)
-  (reset! @#'s/instrumented-vars {})
+  (reset! @#'t/instrumented-vars {})
   (refresh :after 'dev/go))
