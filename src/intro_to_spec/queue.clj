@@ -28,7 +28,7 @@
 
 (s/fdef add
   :args (s/cat :q ::queue
-               :x ::s/any)
+               :x any?)
   :ret ::non-empty-queue)
 (defn add [[f b] x]
   (flip [f (cons x b)]))
@@ -41,7 +41,7 @@
 
 (s/fdef front
   :args (s/cat :q ::non-empty-queue)
-  :ret ::s/any)
+  :ret any?)
 (defn front [[f b]]
   (first f))
 

@@ -15,20 +15,20 @@
     (= (q/empty? q) (equiv q (q/empty)))))
 
 (defspec prop-front-empty
-  (prop/for-all [x (s/gen ::s/any)]
+  (prop/for-all [x (s/gen any?)]
     (= (q/front (q/add (q/empty) x)) x)))
 
 (defspec prop-front-add
   (prop/for-all [q (s/gen ::q/non-empty-queue)
-                 x (s/gen ::s/any)]
+                 x (s/gen any?)]
     (= (q/front (q/add q x)) (q/front q))))
 
 (defspec prop-remove-empty
-  (prop/for-all [x (s/gen ::s/any)]
+  (prop/for-all [x (s/gen any?)]
     (equiv (q/remove (q/add (q/empty) x))
            (q/empty))))
 
 (defspec prop-remove-add
   (prop/for-all [q (s/gen ::q/non-empty-queue)
-                 x (s/gen ::s/any)]
+                 x (s/gen any?)]
     (equiv (q/remove (q/add q x)) (q/add (q/remove q) x))))

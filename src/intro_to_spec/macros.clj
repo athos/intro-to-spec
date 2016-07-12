@@ -2,14 +2,14 @@
   (:refer-clojure :exclude [with-open])
   (:require [clojure.spec :as s]))
 
-(s/def ::binding (s/cat :name simple-symbol? :init ::s/any))
+(s/def ::binding (s/cat :name simple-symbol? :init any?))
 
 (s/def ::bindings (s/and (s/* ::binding) vector?))
 
 (s/fdef with-open
   :args (s/cat :bindings ::bindings
-               :body (s/* ::s/any))
-  :ret ::s/any)
+               :body (s/* any?))
+  :ret any?)
 (defmacro with-open [bindings & body]
   (let [[binding & more] (s/conform ::bindings bindings)]
     (if-not binding
